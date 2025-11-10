@@ -18,7 +18,7 @@ env:
 # Deploy the contents of the `build` directory to the `gh-pages` branch
 
 permissions:
-    contents: read
+    contents: write
     pages: write
 
 jobs:
