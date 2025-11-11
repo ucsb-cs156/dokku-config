@@ -6,8 +6,8 @@ name: 03-deploy-on-github-pages
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
+    paths: [.github/workflows/03-deploy-on-github-pages.yml, frontend/**]
   workflow_dispatch:
 
 
