@@ -1,5 +1,5 @@
 # 05-deploy-branch-on-github-pages.yml
-name: 03-deploy-branch-on-github-pages
+name: 05-deploy-branch-on-github-pages
 
 # Trigger the workflow on pushes to the main branch
 # and on manual deploy
