@@ -1,13 +1,12 @@
-# 03-deploy-on-github-pages.yml
-name: 03-deploy-on-github-pages
+# 05-deploy-branch-on-github-pages.yml
+name: 05-deploy-branch-on-github-pages
 
 # Trigger the workflow on pushes to the main branch
 # and on manual deploy
 
 on:
   push:
-    branches: [ main ]
-    paths: [.github/workflows/03-deploy-on-github-pages.yml, frontend/**]
+    branches-ignore: main
   workflow_dispatch:
 
 
@@ -47,7 +46,7 @@ jobs:
               uses: JamesIves/github-pages-deploy-action@v4
               with:
                  branch: gh-pages # The branch the action should deploy to.
-                 folder: frontend/build # The folder where we put the files
-                 target-folder: main
+                 folder: frontend/build # The folder where we get the files from
                  clean: true # Automatically remove deleted files from the deploy branch
-                 clean-exclude: dev
+                 target-folder: dev/${{ github.ref_name }}
+                 
