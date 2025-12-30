@@ -1,0 +1,52 @@
+# 05-deploy-branch-on-github-pages.yml
+name: 03-deploy-branch-on-github-pages
+
+# Trigger the workflow on pushes to the main branch
+# and on manual deploy
+
+on:
+  push:
+    branches-ignore: main
+  workflow_dispatch:
+
+
+env:
+  GH_TOKEN: ${{ github.token }}
+
+# Build the site using `npm run build`
+# Deploy the contents of the `build` directory to the `gh-pages` branch
+
+permissions:
+    contents: write
+    pages: write
+
+jobs:
+    build-and-deploy:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version-file: 'frontend/package.json'
+                cache: 'npm'
+                cache-dependency-path: frontend/package-lock.json
+
+            - name: Install dependencies
+              working-directory: frontend
+              run: npm ci
+
+            - name: Build site
+              working-directory: frontend
+              run: npm run build
+
+            - name: Deploy to GH Pages 🚀
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                 branch: gh-pages # The branch the action should deploy to.
+                 folder: frontend/build # The folder where we get the files from
+                 clean: false # Automatically remove deleted files from the deploy branch
+                 target-folder: dev/${{ github.ref_name }}
+                 
