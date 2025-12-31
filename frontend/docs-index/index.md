@@ -20,13 +20,13 @@ tbody tr:nth-child(even) {background-color: #f2f2f2;}
 <table>
 <thead>
 <tr>
-<th colspan="1" style="text-align:center">Backend</th>
+<th colspan="1" style="text-align:center">Deployment</th>
 <th colspan="2" style="text-align:center">Frontend (Storybook/Chromatic)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="javadoc">javadoc</a></td>
+<td><a href="main">Deployment</a></td>
 <td><a href="chromatic">storybook</a></td>
 <td><a href="chromatic/build.html">build info</a></td>
 </tr>
@@ -42,16 +42,12 @@ tbody tr:nth-child(even) {background-color: #f2f2f2;}
 <th colspan="2" style="text-align:center">Frontend</th>
 </tr>
 <tr>
-<th>Jacoco</th>
-<th>Pitest</th>
 <th>Coverage</th>
 <th>Stryker</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><a href="jacoco">jacoco</a></td>
-<td><a href="pitest">pitest</a></td>
 <td><a href="coverage">coverage</a></td>
 <td><a href="stryker/mutation.html">stryker</a></td>
 </tr>
@@ -66,7 +62,7 @@ tbody tr:nth-child(even) {background-color: #f2f2f2;}
 <thead>
 <tr>
 <th colspan="3" style="text-align:center">Pull Request</th>
-<th colspan="1" style="text-align:center">Backend</th>
+<th colspan="1" style="text-align:center">Deployment</th>
 <th colspan="2" style="text-align:center">Frontend (Storybook/Chromatic)</th>
 </tr>
 <tr>
@@ -84,7 +80,7 @@ tbody tr:nth-child(even) {background-color: #f2f2f2;}
 <td><a href="{{pr.url}}">PR {{pr.number}}</a></td>
 <td>{{pr.headRefName}}</td>
 <td>{{pr.author.login}}</td>
-<td><a href="prs/{{pr.number}}/javadoc">javadoc</a></td>
+<td><a href="dev/{{pr.headRefName}}">Deployment</a></td>
 <td><a href="prs/{{pr.number}}/chromatic">chromatic sb</a></td>
 <td><a href="prs/{{pr.number}}/chromatic/build.html">build info</a></td>
 </tr>
@@ -98,15 +94,12 @@ tbody tr:nth-child(even) {background-color: #f2f2f2;}
 <thead>
 <tr>
 <th colspan="3" style="text-align:center">Pull Request</th>
-<th colspan="2" style="text-align:center">Backend</th>
 <th colspan="2" style="text-align:center">Frontend</th>
 </tr>
 <tr>
 <th>PR</th>
 <th>Branch</th>
 <th>Author</th>
-<th>Jacoco</th>
-<th>Pitest</th>
 <th>Coverage</th>
 <th>Stryker</th>
 </tr>
@@ -117,8 +110,6 @@ tbody tr:nth-child(even) {background-color: #f2f2f2;}
 <td><a href="{{pr.url}}">PR {{pr.number}}</a></td>
 <td>{{pr.headRefName}}</td>
 <td>{{pr.author.login}}</td>
-<td><a href="prs/{{pr.number}}/jacoco">jacoco</a></td>
-<td><a href="prs/{{pr.number}}/pitest">pitest</a></td>
 <td><a href="prs/{{pr.number}}/coverage">coverage</a></td>
 <td><a href="prs/{{pr.number}}/stryker/mutation.html">stryker</a></td>
 </tr>
