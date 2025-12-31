@@ -10,7 +10,9 @@ import { Button } from "react-bootstrap";
 import SortCaret from "main/components/Common/SortCaret";
 
 function OurTable({ data, columns, testid = "testid" }) {
+  // Stryker disable next-line ArrayDeclaration : for [data]
   const memoizedData = useMemo(() => data, [data]);
+  // Stryker disable next-line ArrayDeclaration : for [columns]
   const memoizedColumns = useMemo(() => columns, [columns]);
 
   const table = useReactTable({
@@ -32,6 +34,7 @@ function OurTable({ data, columns, testid = "testid" }) {
             {headerGroup.headers.map((header) => (
               <th
                 data-testid={`${testid}-header-${header.column.id}`}
+                // Stryker disable next-line StringLiteral : React key property not exposed in dom
                 key={`${testid}-header-${header.column.id}`}
                 colSpan={header.colSpan}
               >
