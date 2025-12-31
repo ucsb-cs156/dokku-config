@@ -2,7 +2,6 @@ import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { Link } from "react-router";
 
 export default function AppNavbar() {
-
   return (
     <>
       <Navbar

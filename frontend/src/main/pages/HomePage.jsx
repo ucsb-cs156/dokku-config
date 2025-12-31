@@ -6,7 +6,8 @@ export default function HomePage() {
       <div className="pt-2">
         <h1>Dokku Config</h1>
         <p>
-          This webapp will help you configure a Dokku deployment for CMPSC 156 at UC Santa Barbara.
+          This webapp will help you configure a Dokku deployment for CMPSC 156
+          at UC Santa Barbara.
         </p>
       </div>
     </BasicLayout>
