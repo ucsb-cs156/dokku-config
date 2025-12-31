@@ -38,7 +38,6 @@ tbody tr:nth-child(even) {background-color: #f2f2f2;}
 <table>
 <thead>
 <tr>
-<th colspan="2" style="text-align:center">Backend</th>
 <th colspan="2" style="text-align:center">Frontend</th>
 </tr>
 <tr>
