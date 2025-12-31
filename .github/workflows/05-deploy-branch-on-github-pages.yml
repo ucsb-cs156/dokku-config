@@ -38,6 +38,12 @@ jobs:
               working-directory: frontend
               run: npm ci
 
+            - name: Adjust path in vite.config.js
+              working-directory: frontend
+              run: |
+                # Change  base: '/dokku-config/main', to base: '/dokku-config/dev/${GITHUB_REF_NAME}',
+                sed -i 's|base: '\''/dokku-config/main'\'',|base: '\''/dokku-config/dev/${GITHUB_REF_NAME}'\'',|g' vite.config.js
+
             - name: Build site
               working-directory: frontend
               run: npm run build
