@@ -42,10 +42,10 @@ jobs:
               working-directory: frontend
               run: |
                 # Change  base: '/dokku-config/main', to base: '/dokku-config/dev/${GITHUB_REF_NAME}',
-                sed -i 's|base: '\''/dokku-config/main'\'',|base: '\''/dokku-config/dev/${GITHUB_REF_NAME}'\'',|g' vite.config.js
+                sed -i "s|base: '/dokku-config/main',|base: '/dokku-config/dev/${GITHUB_REF_NAME}',|g" vite.config.js
 
                 # Change route in frontend/src/main.jsx
-                sed -i 's|basename="/dokku-config"|basename="/dokku-config/dev/${GITHUB_REF_NAME}"|g' src/main.jsx
+                sed -i "s|basename=\"/dokku-config\"|basename=\"/dokku-config/dev/${GITHUB_REF_NAME}\"|g" src/main.jsx
 
             - name: Build site
               working-directory: frontend
