@@ -11,7 +11,7 @@ describe("HomePage tests", () => {
           <HomePage />
         </MemoryRouter>
     );
-    await screen.findByText(/Hello, world!/);
-    expect(screen.getByText(/Hello, world!/)).toBeInTheDocument();
+    await screen.findByText(/Dokku Config/);
+    expect(screen.getByText(/Dokku Config/)).toBeInTheDocument();
   });
 });
