@@ -55,6 +55,9 @@ jobs:
         run: | # Create a redirect file to redirect to the storybook online
           mkdir -p chromatic_static
           echo "<meta http-equiv=refresh content=0;url=${{steps.run_chromatic.outputs.storybookUrl}}>" > chromatic_static/index.html
+          pwd
+          ls -l
+          ls -l chromatic_static
 
       - name: Deploy 🚀
         if: always() # always upload artifacts, even if tests fail
