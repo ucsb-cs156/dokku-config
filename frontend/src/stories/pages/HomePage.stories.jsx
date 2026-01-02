@@ -9,4 +9,3 @@ const Template = () => <HomePage />;
 
 export const Default = Template.bind({});
 Default.parameters = {};
-

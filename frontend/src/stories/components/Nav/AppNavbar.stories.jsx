@@ -1,4 +1,3 @@
-import { currentUserFixtures } from "fixtures/currentUserFixtures";
 import AppNavbar from "main/components/Nav/AppNavbar";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
@@ -23,26 +22,4 @@ const Template = (args) => {
   return <AppNavbar {...args} />;
 };
 
-export const NoRole = Template.bind({});
-
-export const Admin = Template.bind({});
-Admin.args = {
-  currentUser: {
-    ...currentUserFixtures.admin,
-  },
-};
-
-export const Localhost3000 = Template.bind({});
-Localhost3000.args = {
-  currentUrl: "http://localhost:3000",
-};
-
-export const LocalhostNumeric3000 = Template.bind({});
-LocalhostNumeric3000.args = {
-  currentUrl: "http://127.0.0.1:3000",
-};
-
-export const Localhost8080 = Template.bind({});
-Localhost8080.args = {
-  currentUrl: "http://localhost:8080",
-};
+export const Default = Template.bind({});

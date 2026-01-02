@@ -10,8 +10,8 @@ root.render(
   <React.StrictMode>
     <BrowserRouter basename="/dokku-config/main">
       {/* Wrap your app with BrowserRouter */}
-        <ToastContainer />
-        <App />
+      <ToastContainer />
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
 );
