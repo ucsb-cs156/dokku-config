@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156/dokku-config
 owner: ucsb-cs156
 repo_name: dokku-config
-pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"pc-update-package-json","number":1,"title":"pc - update package.json to latest lts version of npm","url":"https://github.com/ucsb-cs156/dokku-config/pull/1"}]
+pull_requests: []
