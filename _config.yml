@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156/dokku-config
 owner: ucsb-cs156
 repo_name: dokku-config
-pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"pc-initial-hardcoded-dokku-for-happycows","number":2,"title":"pc - initial hardcoded dokku for happycows","url":"https://github.com/ucsb-cs156/dokku-config/pull/2"}]
+pull_requests: []
