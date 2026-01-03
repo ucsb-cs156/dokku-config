@@ -45,6 +45,7 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: frontend
           forceRebuild: true
+          configFile: 'chromatic.config.json'  
       - name: Echo output
         run: |
           echo "Chromatic URL: ${{ steps.run_chromatic.outputs.url }}"
