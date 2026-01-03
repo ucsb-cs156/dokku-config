@@ -1,6 +1,19 @@
 {
   "onlyChanged": true,
   "projectId": "Project:66c7bfd76b73a1d1bd3c3908",
-  "storybookBaseDir": "frontend",
-  "zip": true
+  "storybookBaseDir": "./frontend",
+  "zip": true,
+  "$schema": "https://www.chromatic.com/config-file.schema.json",
+  "storybookConfigDir": "./.storybook",
+  "externals": [
+    "coverage/base.css",
+    "coverage/favicon.png",
+    "coverage/prettify.css",
+    "coverage/sort-arrow-sprite.png",
+    "public/favicon.ico",
+    "public/logo192.png",
+    "public/logo512.png",
+    "public/vite.svg",
+    "src/index.css"
+  ]
 }

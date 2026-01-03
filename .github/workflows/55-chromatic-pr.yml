@@ -77,7 +77,8 @@ jobs:
   
     - name: Install dependencies
       working-directory: ./frontend
-      run: npm ci
+      run: |
+        npm ci
     - name: Run Chromatic
       id: run_chromatic
       uses: chromaui/action@latest
@@ -85,6 +86,7 @@ jobs:
           # ⚠️ Make sure to configure a `CHROMATIC_PROJECT_TOKEN` repository secret
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: frontend
+          configFile: 'chromatic.config.json'  
     - name: Echo output
       run: |
           echo "Chromatic URL: ${{ steps.run_chromatic.outputs.url }}"
