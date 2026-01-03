@@ -42,7 +42,10 @@ function DokkuScriptForm({ callback = defaultCallback }) {
                   </Form.Control.Feedback>
                 </Col>
                 <Col sm={4}>
-                  <Form.Text className="text-muted">
+                  <Form.Text
+                    className="text-muted"
+                    data-testid={`${testId}-appname-help`}
+                  >
                     The name of your Dokku app, e.g. <code>team01</code>,{" "}
                     <code>team01-qa</code>, <code>courses-dev-cgaucho</code>,
                     etc.
