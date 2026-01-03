@@ -77,7 +77,8 @@ jobs:
   
     - name: Install dependencies
       working-directory: ./frontend
-      run: npm ci
+      run: |
+        npm ci
     - name: Run Chromatic
       id: run_chromatic
       uses: chromaui/action@latest
