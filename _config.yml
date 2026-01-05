@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156/dokku-config
 owner: ucsb-cs156
 repo_name: dokku-config
-pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"pc-local-storage","number":10,"title":"pc - cache the inputs to the form in local storage","url":"https://github.com/ucsb-cs156/dokku-config/pull/10"},{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"pc-issue7","number":8,"title":"pc - fix footer per issue 7 to explain app and link to source code","url":"https://github.com/ucsb-cs156/dokku-config/pull/8"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"pc-issue7","number":8,"title":"pc - fix footer per issue 7 to explain app and link to source code","url":"https://github.com/ucsb-cs156/dokku-config/pull/8"}]
