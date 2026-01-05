@@ -6,12 +6,13 @@ const defaultCallback = (result) => {
   window.alert(`Form submitted: ${JSON.stringify(result)}`);
 };
 
-function DokkuScriptForm({ callback = defaultCallback }) {
+function DokkuScriptForm({ callback = defaultCallback, params = {} }) {
   const {
     handleSubmit,
     register,
     formState: { errors },
   } = useForm();
+
   const testId = "DokkuScriptForm";
   return (
     <Container className="py-5 DokkuScriptForm" data-testid={testId}>
@@ -33,6 +34,7 @@ function DokkuScriptForm({ callback = defaultCallback }) {
                     data-testid={`${testId}-appname`}
                     type="text"
                     isInvalid={Boolean(errors.appname)}
+                    defaultValue={params.appname || ""}
                     {...register("appname", {
                       required: "appname is required.",
                     })}
