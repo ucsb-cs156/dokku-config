@@ -7,9 +7,16 @@ import { useState } from "react";
 export default function HomePage() {
   const [params, setParams] = useState();
 
+  const testId = "HomePage";
+
   const callback = (params) => {
     setParams(params);
+    localStorage.setItem(`${testId}.params`, JSON.stringify(params));
   };
+
+  localStorage.getItem(`${testId}.params`) &&
+    !params &&
+    setParams(JSON.parse(localStorage.getItem(`${testId}.params`)));
 
   return (
     <BasicLayout>
@@ -22,7 +29,7 @@ export default function HomePage() {
       </div>
       <div>
         <h2>Specify Dokku App</h2>
-        <DokkuScriptForm callback={callback} />
+        <DokkuScriptForm callback={callback} params={params} />
       </div>
       <div className="pt-2">
         <h2>Generated Dokku Script</h2>

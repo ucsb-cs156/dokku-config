@@ -28,4 +28,38 @@ describe("HomePage tests", () => {
     const preElement = await screen.findByTestId("dokkuscript");
     expect(preElement).toHaveTextContent("dokku apps:create team01");
   });
+
+  test("uses values from local storage when set", async () => {
+    // Mock localStorage
+    const mockSetItem = vi.fn();
+    const mockGetItem = vi.fn((key) => {
+      if (key === "HomePage.params") {
+        return JSON.stringify({ appname: "foobar" });
+      }
+      return null;
+    });
+    Object.defineProperty(window, "localStorage", {
+      value: {
+        setItem: mockSetItem,
+        getItem: mockGetItem,
+      },
+    });
+
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+    const testId = "DokkuScriptForm";
+    const appnameInput = screen.getByTestId(`${testId}-appname`);
+    expect(appnameInput).toHaveValue("foobar");
+
+    await userEvent.clear(appnameInput);
+    await userEvent.type(appnameInput, "barfoo");
+    await userEvent.click(screen.getByRole("button", { name: /submit/i }));
+    expect(mockSetItem).toHaveBeenCalledWith(
+      "HomePage.params",
+      JSON.stringify({ appname: "barfoo" }),
+    );
+  });
 });
