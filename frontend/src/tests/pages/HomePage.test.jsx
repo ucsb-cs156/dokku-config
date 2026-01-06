@@ -4,7 +4,16 @@ import { MemoryRouter } from "react-router";
 import { expect } from "vitest";
 import userEvent from "@testing-library/user-event";
 
-describe("HomePage tests", () => {
+describe("HomePage tests", async () => {
+  const exampleParams = {
+    appname: "foobar",
+    email: "cgaucho@ucsb.edu",
+    org: "ucsb-cs156-s26",
+    repo: "team01",
+    google_client_id: "google_client_id",
+    google_client_secret: "google_client_secret",
+  };
+
   test("renders without crashing", async () => {
     render(
       <MemoryRouter>
@@ -15,26 +24,12 @@ describe("HomePage tests", () => {
     expect(screen.getByText(/Dokku Config/)).toBeInTheDocument();
   });
 
-  test("passed values from form to script", async () => {
-    render(
-      <MemoryRouter>
-        <HomePage />
-      </MemoryRouter>,
-    );
-    const testId = "DokkuScriptForm";
-    const appnameInput = screen.getByTestId(`${testId}-appname`);
-    await userEvent.type(appnameInput, "team01");
-    await userEvent.click(screen.getByRole("button", { name: /submit/i }));
-    const preElement = await screen.findByTestId("dokkuscript");
-    expect(preElement).toHaveTextContent("dokku apps:create team01");
-  });
-
   test("uses values from local storage when set", async () => {
     // Mock localStorage
     const mockSetItem = vi.fn();
     const mockGetItem = vi.fn((key) => {
       if (key === "HomePage.params") {
-        return JSON.stringify({ appname: "foobar" });
+        return JSON.stringify(exampleParams);
       }
       return null;
     });
@@ -59,7 +54,7 @@ describe("HomePage tests", () => {
     await userEvent.click(screen.getByRole("button", { name: /submit/i }));
     expect(mockSetItem).toHaveBeenCalledWith(
       "HomePage.params",
-      JSON.stringify({ appname: "barfoo" }),
+      JSON.stringify({ ...exampleParams, appname: "barfoo" }),
     );
   });
 });

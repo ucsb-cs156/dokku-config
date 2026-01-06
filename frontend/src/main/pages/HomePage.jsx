@@ -1,5 +1,5 @@
 import BasicLayout from "main/layouts/BasicLayout/BasicLayout";
-import DokkuScript from "main/components/DokkuScripts/DokkuScript";
+import DokkuScriptGenerate from "main/components/DokkuScripts/DokkuScriptGenerate";
 import DokkuScriptForm from "main/components/DokkuScripts/DokkuScriptForm";
 
 import { useState } from "react";
@@ -33,7 +33,7 @@ export default function HomePage() {
       </div>
       <div className="pt-2">
         <h2>Generated Dokku Script</h2>
-        <DokkuScript {...params} />
+        <DokkuScriptGenerate {...params} />
       </div>
     </BasicLayout>
   );
