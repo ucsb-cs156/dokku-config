@@ -13,14 +13,15 @@ function DokkuScript({
       dokku git:set ${appname} keep-git-dir true
       dokku config:set --no-restart ${appname} PRODUCTION=true
       dokku config:set --no-restart ${appname} SOURCE_REPO=https://github.com/${org}/${repo}
+      dokku config:set ${appname} --no-restart GOOGLE_CLIENT_ID=${google_client_id}
+      dokku config:set ${appname} --no-restart GOOGLE_CLIENT_SECRET=${google_client_secret}
       dokku postgres:create ${appname}-db
       dokku postgres:link ${appname}-db ${appname}
       dokku git:sync ${appname} https://github.com/${org}/${repo} main
       dokku ps:rebuild ${appname}
       dokku letsencrypt:set ${appname} email ${email}
       dokku letsencrypt:enable ${appname}
-      dokku config:set ${appname} --no-restart GOOGLE_CLIENT_ID=${google_client_id}
-      dokku config:set ${appname} --no-restart GOOGLE_CLIENT_SECRET=${google_client_secret}
+      dokku ps:restart ${appname}
 `;
 
   return (
