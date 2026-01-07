@@ -1,4 +1,4 @@
-import DokkuScript from "main/components/DokkuScripts/DokkuScript";
+import DokkuScript from "main/components/DokkuScripts/DokkuScriptGenerate";
 
 export default {
   title: "components/DokkuScripts/DokkuScript",

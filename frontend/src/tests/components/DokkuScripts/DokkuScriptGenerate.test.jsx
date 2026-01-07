@@ -1,10 +1,10 @@
 import { render, screen } from "@testing-library/react";
-import DokkuScript from "main/components/DokkuScripts/DokkuScript";
+import DokkuScriptGenerate from "main/components/DokkuScripts/DokkuScriptGenerate";
 import { expect } from "vitest";
 
 describe("DokkuScript tests", () => {
   test("has expected attributes", async () => {
-    render(<DokkuScript />);
+    render(<DokkuScriptGenerate />);
     const dokkuscript = screen.getByTestId("dokkuscript");
     expect(dokkuscript).toHaveAttribute("data-testid", "dokkuscript");
     expect(dokkuscript).toHaveAttribute("style", "white-space: pre;");
@@ -25,7 +25,7 @@ describe("DokkuScript tests", () => {
       dokku letsencrypt:enable happycows
       dokku config:set happycows --no-restart GOOGLE_CLIENT_ID=get-value-from-google
       dokku config:set happycows --no-restart GOOGLE_CLIENT_SECRET=get-value-from-google`;
-    render(<DokkuScript />);
+    render(<DokkuScriptGenerate />);
     const dokkuscript = screen.getByTestId("dokkuscript");
     expect(dokkuscript).toHaveTextContent(expected, {
       normalizeWhitespace: false,
