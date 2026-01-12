@@ -36,6 +36,7 @@ jobs:
     uses: ucsb-cs156/workflows/.github/workflows/04-gh-pages-rebuild-part-2.yml@main
     with:
       JAVA_DISTRIBUTION: ${{ vars.JAVA_DISTRIBUTION || 'temurin' }}
+      BACKEND: false
     secrets:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
