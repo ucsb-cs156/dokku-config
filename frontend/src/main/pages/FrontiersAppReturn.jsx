@@ -7,8 +7,9 @@ import forge from "node-forge";
 export default function FrontiersAppReturn() {
   const [searchParams, _setSearchParams] = useSearchParams("code");
   const [resultData, setResultData] = useState(null);
+  const [resultError, setResultError] = useState(false);
   useEffect(() => {
-    if (searchParams.get("code") !== null) {
+    if (searchParams.get("code") !== "") {
       axios
         .post(
           `https://api.github.com/app-manifests/${searchParams.get("code")}/conversions`,
@@ -23,6 +24,10 @@ export default function FrontiersAppReturn() {
           response.data.pkcs8 = forge.pki.privateKeyInfoToPem(privateKeyInfo);
 
           setResultData(response.data);
+        })
+        .catch((error) => {
+          setResultError(true);
+          console.error("failed to create app on GitHub: " + error);
         });
     }
   }, [searchParams]);
@@ -30,7 +35,22 @@ export default function FrontiersAppReturn() {
   return (
     <BasicLayout>
       <div>
-        <p>Frontiers App Return Page</p>
+        <h2>Dokku Commands</h2>
+        {!searchParams.get("code") && (
+          <>
+            <p>
+              Something went wrong; Github did not provide an app creation code.
+            </p>
+          </>
+        )}
+        {resultError && (
+          <>
+            <p>
+              Something went wrong; The app code could not be exchanged for
+              credentials.
+            </p>
+          </>
+        )}
         {resultData && (
           <>
             <p>Run the following commands on dokku:</p>

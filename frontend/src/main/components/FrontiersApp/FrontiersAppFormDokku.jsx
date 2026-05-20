@@ -41,26 +41,31 @@ function FrontiersAppFormDokku() {
     <Container>
       <Form
         ref={formRef}
+        data-testid="frontiers-app-form"
         onSubmit={handleSubmit(onSubmit)}
         method="POST"
         action={`https://github.com/settings/apps/new?manifest=${JSON.stringify(appManifest)}`}
       >
         <Form.Group>
-          <Form.Label>App Name</Form.Label>
+          <Form.Label htmlFor="appName">App Name</Form.Label>
           <Form.Control
             type="text"
+            id="appName"
             placeholder="Enter app name"
+            isInvalid={!!errors.appName}
             {...register("appName", { required: true })}
           />
           <Form.Control.Feedback type="invalid">
             {errors.appName && "App Name is required."}
           </Form.Control.Feedback>
-          <Form.Label>Dokku Server</Form.Label>
+          <Form.Label htmlFor="dokkuServer">Dokku Server</Form.Label>
           <Form.Control
             as="select"
             id="dokkuServer"
+            isInvalid={!!errors.dokkuServer}
             {...register("dokkuServer", { required: true })}
           >
+            <option value="">Select a Dokku Server</option>
             {servers.map((number) => (
               <option key={number} value={number}>
                 dokku-{number}
@@ -71,7 +76,7 @@ function FrontiersAppFormDokku() {
             {errors.dokkuServer && "Dokku Server is required."}
           </Form.Control.Feedback>
         </Form.Group>
-        <Form.Group>
+        <Form.Group className="pt-3">
           <Button type="submit">Create Frontiers App</Button>
         </Form.Group>
       </Form>
