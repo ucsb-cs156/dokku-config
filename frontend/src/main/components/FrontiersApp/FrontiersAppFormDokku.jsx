@@ -26,7 +26,7 @@ function FrontiersAppFormDokku() {
       url: `${serverUrl}/api/webhooks/github`,
     },
     default_events: ["organization"],
-    redirect_url: `${window.location.href}/complete`,
+    redirect_url: `${window.location.origin}${window.location.pathname}/complete`,
     callback_urls: [
       `${serverUrl}/api/courses/link`,
       `${serverUrl}/login/oauth2/code/github`,
@@ -44,7 +44,7 @@ function FrontiersAppFormDokku() {
         data-testid="frontiers-app-form"
         onSubmit={handleSubmit(onSubmit)}
         method="POST"
-        action={`https://github.com/settings/apps/new?manifest=${JSON.stringify(appManifest)}`}
+        action={`https://github.com/settings/apps/new?manifest=${encodeURIComponent(JSON.stringify(appManifest))}`}
       >
         <Form.Group>
           <Form.Label htmlFor="appName">App Name</Form.Label>

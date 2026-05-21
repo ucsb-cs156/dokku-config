@@ -55,14 +55,13 @@ export default function FrontiersAppReturn() {
           <>
             <p>Run the following commands on dokku:</p>
             <code>
-              dokku config:set --no-restart {"<appname>"} APP_PRIVATE_KEY="
-              {resultData.pkcs8}" <br />
-              dokku config:set --no-restart {"<appname>"} GITHUB_CLIENT_ID="
-              {resultData.client_id}" <br />
-              dokku config:set --no-restart {"<appname>"} GITHUB_CLIENT_SECRET="
-              {resultData.client_secret}" <br />
-              dokku config:set {"<appname>"} WEBHOOK_SECRET="
-              {resultData.webhook_secret}"
+              {/*prettier-ignore*/}
+              <pre>
+                dokku config:set --no-restart {"<appname>"} APP_PRIVATE_KEY="{resultData.pkcs8}" <br />
+                dokku config:set --no-restart {"<appname>"} GITHUB_CLIENT_ID="{resultData.client_id}" <br />
+                dokku config:set --no-restart {"<appname>"} GITHUB_CLIENT_SECRET="{resultData.client_secret}" <br />
+                dokku config:set {"<appname>"} WEBHOOK_SECRET="{resultData.webhook_secret}"
+              </pre>
             </code>
           </>
         )}

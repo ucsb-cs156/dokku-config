@@ -15,7 +15,7 @@ export const GitHubAppManifestFixtures = {
       url: `https://test.dokku-00.cs.ucsb.edu/api/webhooks/github`,
     },
     default_events: ["organization"],
-    redirect_url: `${window.location.href}/complete`,
+    redirect_url: `${window.location.origin}${window.location.pathname}/complete`,
     callback_urls: [
       `https://test.dokku-00.cs.ucsb.edu/api/courses/link`,
       `https://test.dokku-00.cs.ucsb.edu/login/oauth2/code/github`,
