@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import FrontiersAppReturn from "main/pages/FrontiersAppReturn.jsx";
+import FrontiersAppReturnDokku from "src/main/pages/FrontiersAppReturnDokku.jsx";
 import {
   createMemoryRouter,
   MemoryRouter,
@@ -11,7 +11,7 @@ import AxiosMockAdapter from "axios-mock-adapter";
 import { GitHubAppManifestFixtures } from "fixtures/GitHubAppManifestFixtures.js";
 import forge from "node-forge";
 
-describe("FrontiersAppReturn Page Tests", () => {
+describe("FrontiersAppReturnDokku Page Tests", () => {
   const axiosMock = new AxiosMockAdapter(axios);
   beforeEach(() => {
     axiosMock.reset();
@@ -36,10 +36,10 @@ describe("FrontiersAppReturn Page Tests", () => {
   test("Happy Path", async () => {
     axiosMock
       .onPost("https://api.github.com/app-manifests/code/conversions")
-      .reply(200, GitHubAppManifestFixtures.TestAppResponse);
+      .reply(200, GitHubAppManifestFixtures.TestAppDokkuResponse);
     render(
       <MemoryRouter initialEntries={["/frontiers/complete?code=code"]}>
-        <FrontiersAppReturn />
+        <FrontiersAppReturnDokku />
       </MemoryRouter>,
     );
 
@@ -78,11 +78,11 @@ describe("FrontiersAppReturn Page Tests", () => {
   test("no code", async () => {
     axiosMock
       .onPost("https://api.github.com/app-manifests/code/conversions")
-      .reply(200, GitHubAppManifestFixtures.TestAppResponse);
+      .reply(200, GitHubAppManifestFixtures.TestAppDokkuResponse);
 
     render(
       <MemoryRouter initialEntries={["/frontiers/complete"]}>
-        <FrontiersAppReturn />
+        <FrontiersAppReturnDokku />
       </MemoryRouter>,
     );
 
@@ -110,7 +110,7 @@ describe("FrontiersAppReturn Page Tests", () => {
 
     render(
       <MemoryRouter initialEntries={["/frontiers/complete?code=bad"]}>
-        <FrontiersAppReturn />
+        <FrontiersAppReturnDokku />
       </MemoryRouter>,
     );
     await screen.findByText(
@@ -137,7 +137,7 @@ describe("FrontiersAppReturn Page Tests", () => {
       const change = () => setSearchParams({ code: "bad" });
       return (
         <>
-          <FrontiersAppReturn />
+          <FrontiersAppReturnDokku />
           <button onClick={change}>Change Code</button>
         </>
       );
@@ -156,7 +156,7 @@ describe("FrontiersAppReturn Page Tests", () => {
 
     axiosMock
       .onPost("https://api.github.com/app-manifests/good/conversions")
-      .reply(200, GitHubAppManifestFixtures.TestAppResponse);
+      .reply(200, GitHubAppManifestFixtures.TestAppDokkuResponse);
     axiosMock
       .onPost("https://api.github.com/app-manifests/bad/conversions")
       .reply(403);

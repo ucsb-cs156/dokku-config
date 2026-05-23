@@ -23,7 +23,7 @@ describe("FrontiersAppFormDokku component tests", () => {
     expect(formElement).toHaveAttribute("method", "POST");
     expect(formElement).toHaveAttribute(
       "action",
-      `https://github.com/settings/apps/new?manifest=${encodeURIComponent(JSON.stringify(GitHubAppManifestFixtures.TestApp))}`,
+      `https://github.com/settings/apps/new?manifest=${encodeURIComponent(JSON.stringify(GitHubAppManifestFixtures.TestAppDokku))}`,
     );
     expect(appName).not.toHaveClass("is-invalid");
     expect(dokkuServer).not.toHaveClass("is-invalid");
