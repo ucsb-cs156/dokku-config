@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import FrontiersAppReturnDokku from "src/main/pages/FrontiersAppReturnDokku.jsx";
+import FrontiersAppReturnDokku from "main/pages/FrontiersAppReturnDokku.jsx";
 import {
   createMemoryRouter,
   MemoryRouter,
@@ -38,7 +38,7 @@ describe("FrontiersAppReturnDokku Page Tests", () => {
       .onPost("https://api.github.com/app-manifests/code/conversions")
       .reply(200, GitHubAppManifestFixtures.TestAppDokkuResponse);
     render(
-      <MemoryRouter initialEntries={["/frontiers/complete?code=code"]}>
+      <MemoryRouter initialEntries={["/frontiers/complete/dokku?code=code"]}>
         <FrontiersAppReturnDokku />
       </MemoryRouter>,
     );
@@ -81,7 +81,7 @@ describe("FrontiersAppReturnDokku Page Tests", () => {
       .reply(200, GitHubAppManifestFixtures.TestAppDokkuResponse);
 
     render(
-      <MemoryRouter initialEntries={["/frontiers/complete"]}>
+      <MemoryRouter initialEntries={["/frontiers/complete/dokku"]}>
         <FrontiersAppReturnDokku />
       </MemoryRouter>,
     );
@@ -109,7 +109,7 @@ describe("FrontiersAppReturnDokku Page Tests", () => {
     vi.spyOn(console, "error").mockImplementation(() => {});
 
     render(
-      <MemoryRouter initialEntries={["/frontiers/complete?code=bad"]}>
+      <MemoryRouter initialEntries={["/frontiers/complete/dokku?code=bad"]}>
         <FrontiersAppReturnDokku />
       </MemoryRouter>,
     );
@@ -145,12 +145,12 @@ describe("FrontiersAppReturnDokku Page Tests", () => {
     const ProgrammaticMemoryRouter = createMemoryRouter(
       [
         {
-          path: "/frontiers/complete",
+          path: "/frontiers/complete/dokku",
           element: <Wrapper />,
         },
       ],
       {
-        initialEntries: ["/frontiers/complete?code=good"],
+        initialEntries: ["/frontiers/complete/dokku?code=good"],
       },
     );
 

@@ -26,7 +26,7 @@ function FrontiersAppFormDokku() {
       url: `${serverUrl}/api/webhooks/github`,
     },
     default_events: ["organization"],
-    redirect_url: `${window.location.origin}${window.location.pathname}/complete`,
+    redirect_url: `${window.location.origin}${window.location.pathname}/complete/dokku`,
     callback_urls: [
       `${serverUrl}/api/courses/link`,
       `${serverUrl}/login/oauth2/code/github`,
