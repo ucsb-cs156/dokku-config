@@ -37,6 +37,8 @@ describe("FrontiersAppReturnDokku Page Tests", () => {
     axiosMock
       .onPost("https://api.github.com/app-manifests/code/conversions")
       .reply(200, GitHubAppManifestFixtures.TestAppDokkuResponse);
+    sessionStorage.setItem("frontiers-dokku-appname", "test-app");
+
     render(
       <MemoryRouter initialEntries={["/frontiers/complete/dokku?code=code"]}>
         <FrontiersAppReturnDokku />
@@ -55,10 +57,10 @@ describe("FrontiersAppReturnDokku Page Tests", () => {
     ).toBeInTheDocument();
     expect(
       screen
-        .getByText(/dokku config:set --no-restart <appname>/)
-        .textContent.match(/dokku config:set --no-restart <appname>/g).length,
+        .getByText(/dokku config:set --no-restart test-app/)
+        .textContent.match(/dokku config:set --no-restart test-app/g).length,
     ).toBe(3);
-    expect(screen.getByText(/dokku config:set <appname>/)).toBeInTheDocument();
+    expect(screen.getByText(/dokku config:set test-app/)).toBeInTheDocument();
     expect(forge.pki.privateKeyFromPem).toHaveBeenCalledWith(
       "fake-private-key",
     );
@@ -73,6 +75,7 @@ describe("FrontiersAppReturnDokku Page Tests", () => {
     expect(axiosMock.history.post[0].url).toBe(
       "https://api.github.com/app-manifests/code/conversions",
     );
+    sessionStorage.clear();
   });
 
   test("no code", async () => {
@@ -164,6 +167,9 @@ describe("FrontiersAppReturnDokku Page Tests", () => {
     render(<RouterProvider router={ProgrammaticMemoryRouter} />);
 
     await screen.findByText(/Run the following commands on dokku/);
+    expect(
+      screen.getByText(/dokku config:set --no-restart <appname>/),
+    ).toBeInTheDocument();
     fireEvent.click(screen.getByText(/Change Code/));
     expect(
       await screen.findByText(

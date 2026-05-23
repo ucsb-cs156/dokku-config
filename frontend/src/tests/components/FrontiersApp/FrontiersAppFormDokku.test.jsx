@@ -27,6 +27,8 @@ describe("FrontiersAppFormDokku component tests", () => {
     );
     expect(appName).not.toHaveClass("is-invalid");
     expect(dokkuServer).not.toHaveClass("is-invalid");
+    expect(sessionStorage.getItem("frontiers-dokku-appname")).toBe("test");
+    sessionStorage.clear();
   });
 
   test("Various existence assertions", async () => {

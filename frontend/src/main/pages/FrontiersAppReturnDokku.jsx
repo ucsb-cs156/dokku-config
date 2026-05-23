@@ -32,6 +32,9 @@ export default function FrontiersAppReturnDokku() {
     }
   }, [searchParams]);
 
+  const appName =
+    sessionStorage.getItem("frontiers-dokku-appname") || "<appname>";
+
   return (
     <BasicLayout>
       <div>
@@ -57,10 +60,10 @@ export default function FrontiersAppReturnDokku() {
             <code>
               {/*prettier-ignore*/}
               <pre>
-                dokku config:set --no-restart {"<appname>"} APP_PRIVATE_KEY="{resultData.pkcs8}" <br />
-                dokku config:set --no-restart {"<appname>"} GITHUB_CLIENT_ID="{resultData.client_id}" <br />
-                dokku config:set --no-restart {"<appname>"} GITHUB_CLIENT_SECRET="{resultData.client_secret}" <br />
-                dokku config:set {"<appname>"} WEBHOOK_SECRET="{resultData.webhook_secret}"
+                dokku config:set --no-restart {appName} APP_PRIVATE_KEY="{resultData.pkcs8}" <br />
+                dokku config:set --no-restart {appName} GITHUB_CLIENT_ID="{resultData.client_id}" <br />
+                dokku config:set --no-restart {appName} GITHUB_CLIENT_SECRET="{resultData.client_secret}" <br />
+                dokku config:set {appName} WEBHOOK_SECRET="{resultData.webhook_secret}"
               </pre>
             </code>
           </>

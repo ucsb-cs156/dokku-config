@@ -34,6 +34,7 @@ function FrontiersAppFormDokku() {
   };
 
   const onSubmit = () => {
+    sessionStorage.setItem("frontiers-dokku-appname", watch("appName"));
     formRef.current.submit();
   };
 
