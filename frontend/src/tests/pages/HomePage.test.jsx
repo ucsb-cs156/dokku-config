@@ -12,6 +12,7 @@ describe("HomePage tests", async () => {
     repo: "team01",
     google_client_id: "google_client_id",
     google_client_secret: "google_client_secret",
+    mongo: false,
   };
 
   test("renders without crashing", async () => {

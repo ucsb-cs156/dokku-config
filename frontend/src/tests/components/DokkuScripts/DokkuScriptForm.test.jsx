@@ -67,6 +67,39 @@ describe("DokkuScript tests", () => {
       repo: "proj-dining-f25-01",
       google_client_id: "sample-client-id",
       google_client_secret: "sample-client-secret",
+      mongo: false,
+    });
+  });
+
+  test("when form is submitted with mongo checkbox checked", async () => {
+    const mockCallback = vi.fn();
+    render(<DokkuScriptForm callback={mockCallback} />);
+    const appnameInput = screen.getByTestId(`${testId}-appname`);
+    await userEvent.type(appnameInput, "team01");
+    const emailInput = screen.getByTestId(`${testId}-email`);
+    await userEvent.type(emailInput, "cgaucho@ucsb.edu");
+    const orgInput = screen.getByTestId(`${testId}-org`);
+    await userEvent.type(orgInput, "ucsb-cs156-f25");
+    const repoInput = screen.getByTestId(`${testId}-repo`);
+    await userEvent.type(repoInput, "proj-dining-f25-01");
+    const googleClientIdInput = screen.getByTestId(
+      `${testId}-google_client_id`,
+    );
+    await userEvent.type(googleClientIdInput, "sample-client-id");
+    const googleClientSecretInput = screen.getByTestId(
+      `${testId}-google_client_secret`,
+    );
+    await userEvent.type(googleClientSecretInput, "sample-client-secret");
+    await userEvent.click(screen.getByTestId(`${testId}-mongo`));
+    await userEvent.click(screen.getByRole("button", { name: /submit/i }));
+    expect(mockCallback).toHaveBeenCalledWith({
+      appname: "team01",
+      email: "cgaucho@ucsb.edu",
+      org: "ucsb-cs156-f25",
+      repo: "proj-dining-f25-01",
+      google_client_id: "sample-client-id",
+      google_client_secret: "sample-client-secret",
+      mongo: true,
     });
   });
 
@@ -92,7 +125,7 @@ describe("DokkuScript tests", () => {
     await userEvent.type(googleClientSecretInput, "sample-client-secret");
     await userEvent.click(screen.getByRole("button", { name: /submit/i }));
     expect(alertMock).toHaveBeenCalledWith(
-      'Form submitted: {"appname":"team01","email":"cgaucho@ucsb.edu","org":"ucsb-cs156-f25","repo":"proj-dining-f25-01","google_client_id":"sample-client-id","google_client_secret":"sample-client-secret"}',
+      'Form submitted: {"appname":"team01","email":"cgaucho@ucsb.edu","org":"ucsb-cs156-f25","repo":"proj-dining-f25-01","google_client_id":"sample-client-id","google_client_secret":"sample-client-secret","mongo":false}',
     );
   });
 
