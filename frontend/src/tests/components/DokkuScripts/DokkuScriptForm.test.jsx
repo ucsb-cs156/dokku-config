@@ -27,6 +27,7 @@ describe("DokkuScript tests", () => {
         "Google Client Id for OAuth; see the project README for instructions on obtaining this value.",
       google_client_secret:
         "Google Client Secret for OAuth; see the project README for instructions on obtaining this value.",
+      mongo: "Check this box to provision a MongoDB database for your app.",
     };
 
     render(<DokkuScriptForm />);
