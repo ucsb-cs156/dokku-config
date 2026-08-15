@@ -7,7 +7,14 @@ function DokkuScript({
   repo = "proj-happycows",
   google_client_id = "get-value-from-google",
   google_client_secret = "get-value-from-google",
+  mongo = false,
 }) {
+  const mongoInstructions = mongo
+    ? `
+      dokku mongo:create ${appname}-m
+      dokku mongo:link ${appname}-m ${appname}`
+    : "";
+
   const content = `
       dokku apps:create ${appname}
       dokku git:set ${appname} keep-git-dir true
@@ -16,7 +23,7 @@ function DokkuScript({
       dokku config:set ${appname} --no-restart GOOGLE_CLIENT_ID=${google_client_id}
       dokku config:set ${appname} --no-restart GOOGLE_CLIENT_SECRET=${google_client_secret}
       dokku postgres:create ${appname}-db
-      dokku postgres:link ${appname}-db ${appname}
+      dokku postgres:link ${appname}-db ${appname}${mongoInstructions}
       dokku git:sync ${appname} https://github.com/${org}/${repo} main
       dokku ps:rebuild ${appname}
       dokku letsencrypt:set ${appname} email ${email}

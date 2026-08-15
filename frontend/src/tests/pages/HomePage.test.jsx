@@ -12,6 +12,7 @@ describe("HomePage tests", async () => {
     repo: "team01",
     google_client_id: "google_client_id",
     google_client_secret: "google_client_secret",
+    mongo: true,
   };
 
   test("renders without crashing", async () => {
@@ -48,6 +49,8 @@ describe("HomePage tests", async () => {
     const testId = "DokkuScriptForm";
     const appnameInput = screen.getByTestId(`${testId}-appname`);
     expect(appnameInput).toHaveValue("foobar");
+    const mongoCheckbox = screen.getByTestId(`${testId}-mongo`);
+    expect(mongoCheckbox).toBeChecked();
 
     await userEvent.clear(appnameInput);
     await userEvent.type(appnameInput, "barfoo");

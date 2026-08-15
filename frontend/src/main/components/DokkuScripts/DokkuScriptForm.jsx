@@ -209,6 +209,28 @@ function DokkuScriptForm({ callback = defaultCallback, params = {} }) {
                 </Col>
               </Form.Group>
 
+              <Form.Group as={Row} className="mb-3" controlId="mongo">
+                <Form.Label column sm={2}>
+                  Enable MongoDB
+                </Form.Label>
+                <Col sm={6}>
+                  <Form.Check
+                    type="checkbox"
+                    data-testid={`${testId}-mongo`}
+                    defaultChecked={params.mongo || false}
+                    {...register("mongo")}
+                  />
+                </Col>
+                <Col sm={4}>
+                  <Form.Text
+                    className="text-muted"
+                    data-testid={`${testId}-mongo-help`}
+                  >
+                    Check this box to provision a MongoDB database for your app.
+                  </Form.Text>
+                </Col>
+              </Form.Group>
+
               <Button variant="primary" type="submit">
                 Submit
               </Button>
