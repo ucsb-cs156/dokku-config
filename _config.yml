@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156/dokku-config
 owner: ucsb-cs156
 repo_name: dokku-config
-pull_requests: [{"author":{"is_bot":true,"login":"app/copilot-swe-agent"},"headRefName":"copilot/add-mongodb-option","number":17,"title":"Add MongoDB checkbox to app creation form","url":"https://github.com/ucsb-cs156/dokku-config/pull/17"},{"author":{"id":"MDQ6VXNlcjI2MzQ3ODk3","is_bot":false,"login":"Division7","name":"Daniel Jensen"},"headRefName":"dj-frontiersAppManifest","number":15,"title":"Create Templated GitHub Apps","url":"https://github.com/ucsb-cs156/dokku-config/pull/15"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjI2MzQ3ODk3","is_bot":false,"login":"Division7","name":"Daniel Jensen"},"headRefName":"dj-frontiersAppManifest","number":15,"title":"Create Templated GitHub Apps","url":"https://github.com/ucsb-cs156/dokku-config/pull/15"}]
