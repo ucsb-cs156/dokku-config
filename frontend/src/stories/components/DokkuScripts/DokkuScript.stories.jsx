@@ -23,3 +23,16 @@ Dining.args = {
   google_client_id: "sample-client-id",
   google_client_secret: "sample-client-secret",
 };
+
+export const WithUcsbApi = Template.bind({});
+
+WithUcsbApi.args = {
+  appname: "courses",
+  email: "cgaucho@ucsb.edu",
+  org: "ucsb-cs156-s26",
+  repo: "proj-courses-s26-01",
+  google_client_id: "sample-client-id",
+  google_client_secret: "sample-client-secret",
+  ucsb_api: true,
+  ucsb_api_key: "sample-ucsb-api-key",
+};

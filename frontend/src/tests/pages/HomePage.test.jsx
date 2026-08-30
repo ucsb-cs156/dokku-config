@@ -13,6 +13,8 @@ describe("HomePage tests", async () => {
     google_client_id: "google_client_id",
     google_client_secret: "google_client_secret",
     mongo: true,
+    ucsb_api: true,
+    ucsb_api_key: "ucsb_key",
   };
 
   test("renders without crashing", async () => {
@@ -55,6 +57,10 @@ describe("HomePage tests", async () => {
     expect(appnameInput).toHaveValue("foobar");
     const mongoCheckbox = screen.getByTestId(`${testId}-mongo`);
     expect(mongoCheckbox).toBeChecked();
+    const ucsbApiCheckbox = screen.getByTestId(`${testId}-ucsb_api`);
+    expect(ucsbApiCheckbox).toBeChecked();
+    const ucsbApiKeyInput = screen.getByTestId(`${testId}-ucsb_api_key`);
+    expect(ucsbApiKeyInput).toHaveValue("ucsb_key");
 
     await userEvent.clear(appnameInput);
     await userEvent.type(appnameInput, "barfoo");
@@ -63,5 +69,6 @@ describe("HomePage tests", async () => {
       "HomePage.params",
       JSON.stringify({ ...exampleParams, appname: "barfoo" }),
     );
+    expect(screen.getByTestId("dokkuscript")).toHaveTextContent(/barfoo/);
   });
 });
