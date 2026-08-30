@@ -13,5 +13,6 @@ describe("AppNavbar tests", () => {
     );
     await screen.findByTestId("AppNavbar");
     expect(screen.getByTestId("AppNavbar")).toBeInTheDocument();
+    expect(screen.getByText("Dokku Config")).toBeInTheDocument();
   });
 });

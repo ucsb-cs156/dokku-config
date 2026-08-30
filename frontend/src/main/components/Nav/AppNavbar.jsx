@@ -13,7 +13,7 @@ export default function AppNavbar() {
       >
         <Container>
           <Navbar.Brand as={Link} to="/">
-            Example
+            Dokku Config
           </Navbar.Brand>
 
           <Navbar.Toggle />

@@ -21,8 +21,12 @@ describe("HomePage tests", async () => {
         <HomePage />
       </MemoryRouter>,
     );
-    await screen.findByText(/Dokku Config/);
-    expect(screen.getByText(/Dokku Config/)).toBeInTheDocument();
+
+    const heading = await screen.findByRole("heading", {
+      name: /Dokku Config/i,
+      level: 1,
+    });
+    expect(heading).toBeInTheDocument();
   });
 
   test("uses values from local storage when set", async () => {
