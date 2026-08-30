@@ -8,11 +8,18 @@ function DokkuScript({
   google_client_id = "get-value-from-google",
   google_client_secret = "get-value-from-google",
   mongo = false,
+  ucsb_api = false,
+  ucsb_api_key = "get-value-from-ucsb-api",
 }) {
   const mongoInstructions = mongo
     ? `
       dokku mongo:create ${appname}-m
       dokku mongo:link ${appname}-m ${appname}`
+    : "";
+
+  const ucsbApiInstructions = ucsb_api
+    ? `
+      dokku config:set ${appname} UCSB_API_KEY=${ucsb_api_key} --no-restart`
     : "";
 
   const content = `
@@ -21,7 +28,7 @@ function DokkuScript({
       dokku config:set --no-restart ${appname} PRODUCTION=true
       dokku config:set --no-restart ${appname} SOURCE_REPO=https://github.com/${org}/${repo}
       dokku config:set ${appname} --no-restart GOOGLE_CLIENT_ID=${google_client_id}
-      dokku config:set ${appname} --no-restart GOOGLE_CLIENT_SECRET=${google_client_secret}
+      dokku config:set ${appname} --no-restart GOOGLE_CLIENT_SECRET=${google_client_secret}${ucsbApiInstructions}
       dokku postgres:create ${appname}-db
       dokku postgres:link ${appname}-db ${appname}${mongoInstructions}
       dokku git:sync ${appname} https://github.com/${org}/${repo} main

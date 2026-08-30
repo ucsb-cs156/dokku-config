@@ -10,10 +10,12 @@ function DokkuScriptForm({ callback = defaultCallback, params = {} }) {
   const {
     handleSubmit,
     register,
+    watch,
     formState: { errors },
   } = useForm();
 
   const testId = "DokkuScriptForm";
+  const ucsb_api = watch("ucsb_api", params.ucsb_api || false);
   return (
     <Container className="py-5 DokkuScriptForm" data-testid={testId}>
       <Row className="justify-content-center">
@@ -230,6 +232,60 @@ function DokkuScriptForm({ callback = defaultCallback, params = {} }) {
                   </Form.Text>
                 </Col>
               </Form.Group>
+
+              <Form.Group as={Row} className="mb-3" controlId="ucsb_api">
+                <Form.Label column sm={2}>
+                  Enable UCSB API
+                </Form.Label>
+                <Col sm={6}>
+                  <Form.Check
+                    type="checkbox"
+                    data-testid={`${testId}-ucsb_api`}
+                    defaultChecked={params.ucsb_api || false}
+                    {...register("ucsb_api")}
+                  />
+                </Col>
+                <Col sm={4}>
+                  <Form.Text
+                    className="text-muted"
+                    data-testid={`${testId}-ucsb_api-help`}
+                  >
+                    Check this box to configure a UCSB API key for your app.
+                  </Form.Text>
+                </Col>
+              </Form.Group>
+
+              {ucsb_api && (
+                <Form.Group as={Row} className="mb-3" controlId="ucsb_api_key">
+                  <Form.Label column sm={2}>
+                    UCSB API Key
+                  </Form.Label>
+                  <Col sm={6}>
+                    <Form.Control
+                      data-testid={`${testId}-ucsb_api_key`}
+                      type="text"
+                      isInvalid={Boolean(errors.ucsb_api_key)}
+                      defaultValue={params.ucsb_api_key || ""}
+                      {...register("ucsb_api_key", {
+                        required: "UCSB API Key is required.",
+                      })}
+                    />
+                    <Form.Control.Feedback type="invalid">
+                      {errors.ucsb_api_key?.message}
+                    </Form.Control.Feedback>
+                  </Col>
+                  <Col sm={4}>
+                    <Form.Text
+                      className="text-muted"
+                      data-testid={`${testId}-ucsb_api_key-help`}
+                    >
+                      UCSB API Key for accessing UCSB APIs; see
+                      developer.ucsb.edu for instructions on obtaining this
+                      value.
+                    </Form.Text>
+                  </Col>
+                </Form.Group>
+              )}
 
               <Button variant="primary" type="submit">
                 Submit

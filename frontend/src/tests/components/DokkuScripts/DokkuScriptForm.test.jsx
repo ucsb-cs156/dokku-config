@@ -28,6 +28,7 @@ describe("DokkuScript tests", () => {
       google_client_secret:
         "Google Client Secret for OAuth; see the project README for instructions on obtaining this value.",
       mongo: "Check this box to provision a MongoDB database for your app.",
+      ucsb_api: "Check this box to configure a UCSB API key for your app.",
     };
 
     render(<DokkuScriptForm />);
@@ -69,6 +70,7 @@ describe("DokkuScript tests", () => {
       google_client_id: "sample-client-id",
       google_client_secret: "sample-client-secret",
       mongo: false,
+      ucsb_api: false,
     });
   });
 
@@ -101,7 +103,60 @@ describe("DokkuScript tests", () => {
       google_client_id: "sample-client-id",
       google_client_secret: "sample-client-secret",
       mongo: true,
+      ucsb_api: false,
     });
+  });
+
+  test("when form is submitted with ucsb_api checkbox checked", async () => {
+    const mockCallback = vi.fn();
+    render(<DokkuScriptForm callback={mockCallback} />);
+    const appnameInput = screen.getByTestId(`${testId}-appname`);
+    await userEvent.type(appnameInput, "team01");
+    const emailInput = screen.getByTestId(`${testId}-email`);
+    await userEvent.type(emailInput, "cgaucho@ucsb.edu");
+    const orgInput = screen.getByTestId(`${testId}-org`);
+    await userEvent.type(orgInput, "ucsb-cs156-f25");
+    const repoInput = screen.getByTestId(`${testId}-repo`);
+    await userEvent.type(repoInput, "proj-dining-f25-01");
+    const googleClientIdInput = screen.getByTestId(
+      `${testId}-google_client_id`,
+    );
+    await userEvent.type(googleClientIdInput, "sample-client-id");
+    const googleClientSecretInput = screen.getByTestId(
+      `${testId}-google_client_secret`,
+    );
+    await userEvent.type(googleClientSecretInput, "sample-client-secret");
+    await userEvent.click(screen.getByTestId(`${testId}-ucsb_api`));
+
+    expect(screen.getByTestId(`${testId}-ucsb_api_key-help`)).toHaveTextContent(
+      "UCSB API Key for accessing UCSB APIs; see developer.ucsb.edu for instructions on obtaining this value.",
+    );
+
+    const ucsbApiKeyInput = screen.getByTestId(`${testId}-ucsb_api_key`);
+    await userEvent.type(ucsbApiKeyInput, "sample-ucsb-api-key");
+
+    await userEvent.click(screen.getByRole("button", { name: /submit/i }));
+    expect(mockCallback).toHaveBeenCalledWith({
+      appname: "team01",
+      email: "cgaucho@ucsb.edu",
+      org: "ucsb-cs156-f25",
+      repo: "proj-dining-f25-01",
+      google_client_id: "sample-client-id",
+      google_client_secret: "sample-client-secret",
+      mongo: false,
+      ucsb_api: true,
+      ucsb_api_key: "sample-ucsb-api-key",
+    });
+  });
+
+  test("when ucsb_api checkbox is checked without filling in ucsb_api_key", async () => {
+    const mockCallback = vi.fn();
+    render(<DokkuScriptForm callback={mockCallback} />);
+    await userEvent.click(screen.getByTestId(`${testId}-ucsb_api`));
+    await userEvent.click(screen.getByRole("button", { name: /submit/i }));
+    await screen.findByText(/UCSB API Key is required/i);
+    expect(mockCallback).not.toHaveBeenCalled();
+    expect(screen.getByText(/UCSB API Key is required/i)).toBeInTheDocument();
   });
 
   test("when form is submitted with default callback, window.alert is called", async () => {
@@ -126,7 +181,7 @@ describe("DokkuScript tests", () => {
     await userEvent.type(googleClientSecretInput, "sample-client-secret");
     await userEvent.click(screen.getByRole("button", { name: /submit/i }));
     expect(alertMock).toHaveBeenCalledWith(
-      'Form submitted: {"appname":"team01","email":"cgaucho@ucsb.edu","org":"ucsb-cs156-f25","repo":"proj-dining-f25-01","google_client_id":"sample-client-id","google_client_secret":"sample-client-secret","mongo":false}',
+      'Form submitted: {"appname":"team01","email":"cgaucho@ucsb.edu","org":"ucsb-cs156-f25","repo":"proj-dining-f25-01","google_client_id":"sample-client-id","google_client_secret":"sample-client-secret","mongo":false,"ucsb_api":false}',
     );
   });
 
