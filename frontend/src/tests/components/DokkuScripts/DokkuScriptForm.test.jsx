@@ -156,7 +156,6 @@ describe("DokkuScript tests", () => {
     await userEvent.click(screen.getByRole("button", { name: /submit/i }));
     await screen.findByText(/UCSB API Key is required/i);
     expect(mockCallback).not.toHaveBeenCalled();
-    expect(screen.getByText(/UCSB API Key is required/i)).toBeInTheDocument();
   });
 
   test("when form is submitted with default callback, window.alert is called", async () => {
