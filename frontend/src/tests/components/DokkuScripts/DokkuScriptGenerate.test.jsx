@@ -87,4 +87,30 @@ describe("DokkuScript tests", () => {
       normalizeWhitespace: false,
     });
   });
+
+  test("includes default ucsb_api_key when ucsb_api is true and ucsb_api_key is omitted", async () => {
+    // prettier-ignore
+    const expected = `
+      dokku apps:create happycows
+      dokku git:set happycows keep-git-dir true
+      dokku config:set --no-restart happycows PRODUCTION=true
+      dokku config:set --no-restart happycows SOURCE_REPO=https://github.com/ucsb-cs156/proj-happycows
+      dokku config:set happycows --no-restart GOOGLE_CLIENT_ID=get-value-from-google
+      dokku config:set happycows --no-restart GOOGLE_CLIENT_SECRET=get-value-from-google
+      dokku config:set happycows UCSB_API_KEY=get-value-from-ucsb-api --no-restart
+      dokku postgres:create happycows-db
+      dokku postgres:link happycows-db happycows
+      dokku git:sync happycows https://github.com/ucsb-cs156/proj-happycows main
+      dokku ps:rebuild happycows
+      dokku letsencrypt:set happycows email phtcon@ucsb.edu
+      dokku letsencrypt:enable happycows
+      dokku ps:restart happycows
+`;
+
+    render(<DokkuScriptGenerate ucsb_api={true} />);
+    const dokkuscript = screen.getByTestId("dokkuscript");
+    expect(dokkuscript).toHaveTextContent(expected, {
+      normalizeWhitespace: false,
+    });
+  });
 });

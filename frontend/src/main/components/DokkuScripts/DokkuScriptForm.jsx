@@ -15,7 +15,7 @@ function DokkuScriptForm({ callback = defaultCallback, params = {} }) {
   } = useForm();
 
   const testId = "DokkuScriptForm";
-  const ucsb_api = watch("ucsb_api", params.ucsb_api || false);
+  const ucsb_api = watch("ucsb_api", params.ucsb_api);
   return (
     <Container className="py-5 DokkuScriptForm" data-testid={testId}>
       <Row className="justify-content-center">

@@ -65,5 +65,6 @@ describe("HomePage tests", async () => {
       "HomePage.params",
       JSON.stringify({ ...exampleParams, appname: "barfoo" }),
     );
+    expect(screen.getByTestId("dokkuscript")).toHaveTextContent(/barfoo/);
   });
 });

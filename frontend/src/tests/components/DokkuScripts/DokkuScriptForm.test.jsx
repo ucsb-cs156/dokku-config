@@ -158,6 +158,18 @@ describe("DokkuScript tests", () => {
     expect(mockCallback).not.toHaveBeenCalled();
   });
 
+  test("renders with initial ucsb_api params set to true", async () => {
+    render(
+      <DokkuScriptForm
+        params={{ ucsb_api: true, ucsb_api_key: "sample-key" }}
+      />,
+    );
+    const ucsbApiCheckbox = screen.getByTestId(`${testId}-ucsb_api`);
+    expect(ucsbApiCheckbox).toBeChecked();
+    const ucsbApiKeyInput = screen.getByTestId(`${testId}-ucsb_api_key`);
+    expect(ucsbApiKeyInput).toHaveValue("sample-key");
+  });
+
   test("when form is submitted with default callback, window.alert is called", async () => {
     // Setup mock for window.alert
     const alertMock = vi.spyOn(window, "alert").mockImplementation(() => {});
