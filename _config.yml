@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156/dokku-config
 owner: ucsb-cs156
 repo_name: dokku-config
-pull_requests: [{"author":{"id":"MDQ6VXNlcjI2MzQ3ODk3","is_bot":false,"login":"Division7","name":"Daniel Jensen"},"headRefName":"dj-frontiersAppManifest","number":15,"title":"Create Templated GitHub Apps","url":"https://github.com/ucsb-cs156/dokku-config/pull/15"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjExMTkwMTc=","is_bot":false,"login":"pconrad","name":"Phill Conrad"},"headRefName":"update-node-24-lts","number":23,"title":"Update frontend to Node 24.21.0 LTS; upgrade dependencies (0 audit vulnerabilities)","url":"https://github.com/ucsb-cs156/dokku-config/pull/23"},{"author":{"id":"MDQ6VXNlcjI2MzQ3ODk3","is_bot":false,"login":"Division7","name":"Daniel Jensen"},"headRefName":"dj-frontiersAppManifest","number":15,"title":"Create Templated GitHub Apps","url":"https://github.com/ucsb-cs156/dokku-config/pull/15"}]
