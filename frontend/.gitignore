@@ -60,3 +60,6 @@ yarn-error.log*
 *storybook.log
 stats.html
 
+
+# storybook build output
+storybook-static
