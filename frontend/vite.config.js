@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
+import react from '@vitejs/plugin-react'
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
 
@@ -8,21 +8,24 @@ import { visualizer } from 'rollup-plugin-visualizer';
 export default defineConfig({
  base: '/dokku-config/main', // Ensures that the app works correctly when served from a subdirectory
  plugins: [
-    react({
-       // Tell SWC to explicitly enable the JSX parser
-      parserPlugins: ['jsx'],
-    }),
+    react(),
     process.env.ANALYZE && visualizer({ open: true }), // use `ANALYZE=true npm run build` to analyze the bundle size 
   ].filter(Boolean), // .filter(Boolean) removes any falsey values from the array
   build: {
     outDir: 'build', // Changes the output directory from 'dist' to 'build'
     chunkSizeWarningLimit: 512, // You can set this to a reasonable number slightly above your current chunk size
-    rollupOptions: {
+    // Vite 8 uses Rolldown; `rollupOptions` was renamed to `rolldownOptions`
+    rolldownOptions: {
       output: {
-        manualChunks: (id) => {
-          if (id.includes('node_modules')) {
-            return 'vendor';
-          }
+        // Rolldown's replacement for the (deprecated) `manualChunks` function:
+        // put everything from node_modules into a single "vendor" chunk
+        codeSplitting: {
+          groups: [
+            {
+              name: 'vendor',
+              test: /node_modules/,
+            },
+          ],
         },
       },
     },
@@ -50,9 +53,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "main": path.resolve(__dirname, "./src/main"),
-      "fixtures": path.resolve(__dirname, "./src/fixtures"),
-      "tests": path.resolve(__dirname, "./src/tests"),
+      // import.meta.dirname (Node 20.11+) replaces the CommonJS-only __dirname
+      "main": path.resolve(import.meta.dirname, "./src/main"),
+      "fixtures": path.resolve(import.meta.dirname, "./src/fixtures"),
+      "tests": path.resolve(import.meta.dirname, "./src/tests"),
     }
   },
   server: {
